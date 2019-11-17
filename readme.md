@@ -2,5 +2,6 @@
 
 <li>Model</li>
 <li>Migration</li>
-<li>Model relation</li>
+<li>Model relations</li>
 <li>Simple authentication</li>
+<li>Reset password</li>
