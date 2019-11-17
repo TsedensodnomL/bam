@@ -18,7 +18,7 @@ class pagesController extends Controller
         return view('pages.about');
     }
     
-    function getUser(){
-        return view('pages.user');
-    }
+    // function getUser(){
+    //     return view('pages.user');
+    // }
 }

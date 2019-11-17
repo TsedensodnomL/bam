@@ -287,25 +287,3 @@ $(".deletePost").click(function(){
 		 }
 	});
 });
-
-$(".logout").click(function(){
-	
-	$.ajaxSetup({
-			headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			}
-	});
-	$.ajax(
-	{
-			url: "/logout",
-			type: 'post', // replaced from put
-			dataType: "JSON",
-			success: function(result) {
-        window.location.href=result.Url;
-    	},
-			error: function(xhr) {
-			 console.log(xhr.responseText); // this line will save you tons of hours while debugging
-			// do something here because of error
-		 }
-	});
-});

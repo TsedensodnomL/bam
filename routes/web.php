@@ -21,9 +21,6 @@ Route::get('/contact', 'pagesController@getContact')->name('contact');
 
 Route::get('/about', 'pagesController@getAbout')->name('about');
 
-//user 
-
-Route::get('/user', 'pagesController@getUser')->name('user');
 
 // posts
 
@@ -31,17 +28,12 @@ Route::resource('/post', 'postController');
 
 // categories
 
-Route::resource('/category', 'categoryController');
+Route::resource('/category', 'categoriesController');
 
 // tags
 
+// Route::resource('/tag', 'tagController');
 
 //comments
 
 
-
-
-
-// Route::get('/error', function(){
-//     return view('error');
-// });
