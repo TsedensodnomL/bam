@@ -32,6 +32,8 @@ Route::resource('/category', 'categoriesController');
 
 // tags
 
+Route::resource('/tag', 'tagController');
+
 // Route::resource('/tag', 'tagController');
 
 //comments

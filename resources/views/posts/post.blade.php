@@ -10,8 +10,8 @@
         <div class="row same-height justify-content-center">
           <div class="col-md-12 col-lg-10">
             <div class="post-entry text-center">
-              <span class="post-category text-white bg-success mb-3">Nature</span>
-              <h1 class="mb-4"><a href="#">{{$post->title}}</a></h1>
+              <span class="post-category text-white bg-success mb-3">{{$post->category->name}}</span>
+              <h1 class="mb-4">{{$post->title}}</a></h1>
               <div class="post-meta align-items-center text-center">
                 <figure class="author-figure mb-0 mr-3 d-inline-block"><img src="images/person_1.jpg" alt="Image" class="img-fluid"></figure>
                 <span class="d-inline-block mt-1">By Carrol Atkinson</span>
