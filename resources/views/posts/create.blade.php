@@ -16,13 +16,18 @@
                <div class="col-md-3 no-padding">
                  <label class="text-black" for="category">category</label>
                  <select name='category' class="form-control">
-                   <option>...</option>
+                 @foreach($category as $c)
+                  
+                   <option value='{{$c->id}}'>{{$c->name}}</option>
+                @endforeach
                  </select>
                </div>
                <div class="col-md-3 no-padding">
                  <label class="text-black" for="tag">tag</label>
-                 <select name='tag' class="form-control">
-                   <option>...</option>
+                 <select multiple name='tags[]' class="form-control">
+                @foreach($tag as $t)
+                 <option value='{{$t->id}}'> {{$t->name}}</option>
+                @endforeach
                  </select>
                </div>
               <div>

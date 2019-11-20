@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\category;
+use App\tag;
 use Session;
-
-class categoriesController extends Controller
+class tagController extends Controller
 {
     public function __construct(){
-
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -19,9 +17,8 @@ class categoriesController extends Controller
      */
     public function index()
     {
-        $categoies = category::all();
-
-        return view('category.index',['categories'=>$categoies]);
+        $tags = tag::all();
+        return view('tags.index',['tags'=>$tags]);
     }
 
     /**
@@ -31,7 +28,7 @@ class categoriesController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        return view('tags.create');
     }
 
     /**
@@ -43,20 +40,18 @@ class categoriesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, array(
-            'name'=>'required|max:255',
-            'description'=>'required'
+            'name' => 'required|max:255',
+            
         ));
 
-        $category = new category;
+        $tag= new tag;
 
-        $category->name = $request->name;
-        $category->description = $request->description;
-
-        $category->save();
+        $tag->name = $request->name;
+        $tag->save();
 
         Session::flash('success', 'Амжилттай хадгалагдлаа');
 
-        return redirect()->route('category.show',$category->id);
+        return redirect()->route('tag.index');
     }
 
     /**
@@ -67,8 +62,7 @@ class categoriesController extends Controller
      */
     public function show($id)
     {
-        $category = category::find($id);
-        return view('category.category', ['category'=>$category]);
+        
     }
 
     /**
@@ -79,9 +73,8 @@ class categoriesController extends Controller
      */
     public function edit($id)
     {
-        $category = category::find($id);
-
-        return view('category.edit',['category'=>$category]);
+        $tag = tag::find($id);
+        return view('tags.edit', ['tag'=>$tag]);
     }
 
     /**
@@ -93,21 +86,18 @@ class categoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, array(
-            'name' =>'required|max:255',
-            'description' => 'required'
+        $this->validate($request,array(
+            'name'=>'required'
         ));
 
-        $category = category::find($id);
+        $tag= tag::find($id);
 
-        $category->name = $request->name;
-        $category->description = $request->description;
+        $tag->name = $required->name;
+        $tag->save();
 
-        $category->save();
+        Session::flash('success', 'Амжилттай хадгалагдлаа');
 
-        Session::flash('success','Амжилттай хадгалагдлаа');
-
-        return redirect()->route('category.show',$id);
+        return redirect()->route('tag.index');
     }
 
     /**
@@ -118,8 +108,12 @@ class categoriesController extends Controller
      */
     public function destroy($id)
     {
-        Post::destroy($id);
-         
-        return response()->json(['Url' => "/category"]); 
+        $tag= tag::find($id);
+        $tag->posts()->detach();
+
+        $post->delete();
+
+        Session::flash('success', 'Амжилттай устлаа');
+        return redirect()->route('tag.index');
     }
 }

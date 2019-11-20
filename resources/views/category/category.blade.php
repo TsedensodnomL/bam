@@ -8,37 +8,43 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <span>Category</span>
-            <h3><!--$category->name --></h3>
-            <p><!--$category->description --></p>
+            <span>Категори</span>
+            <h3>{{$category->name}}</h3>
+            <p>{{$category->description}}</p>
           </div>
+          @if(Auth::check())
+          <div class="col-md-3 d-flex align-items-center">
+            <a href='{{route("category.edit",$category->id)}}' class='btn btn-success text-white'>Засах</a>
+          </div>
+          @endif
         </div>
       </div>
     </div>
-
-    <!-- @foreach($posts as $post) -->
+    
     <div class="site-section bg-white">
       <div class="container">
+         @foreach($category->posts as $post)
         <div class="row">
           <div class="col-lg-4 mb-4">
             <div class="entry2">
-              <a href="single.html"><img src="images/img_1.jpg" alt="Image" class="img-fluid rounded"></a>
+              <a href="{{route('post.show',$post->slug)}}"><img src="images/img_1.jpg" alt="Image" class="img-fluid rounded"></a>
               <div class="excerpt">
-              <span class="post-category text-white bg-secondary mb-3">Politics</span>
+              <span class="post-category text-white bg-secondary mb-3">{{$category->name}}</span>
 
-              <h2><a href="single.html">The AI magically removes moving objects from videos.</a></h2>
+              <h2><a href="{{route('post.show',$post->slug)}}">{{$post->title}}</a></h2>
               <div class="post-meta align-items-center text-left clearfix">
                 <figure class="author-figure mb-0 mr-3 float-left"><img src="images/person_1.jpg" alt="Image" class="img-fluid"></figure>
                 <span class="d-inline-block mt-1">By <a href="#">Carrol Atkinson</a></span>
-                <span>&nbsp;-&nbsp; July 19, 2019</span>
+                <span>&nbsp;-&nbsp; {{$post->created_at}}</span>
               </div>
               
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo sunt tempora dolor laudantium sed optio, explicabo ad deleniti impedit facilis fugit recusandae! Illo, aliquid, dicta beatae quia porro id est.</p>
-                <p><a href="#">Read More</a></p>
+                <p>{{substr($post->body, 0, 50)}}</p>
+                <p><a href="{{route('post.show',$post->slug)}}">Read More</a></p>
               </div>
             </div>
           </div>
         </div>
+        @endforeach
       </div>
     </div>
-    <!-- @endforeach -->
+@endsection

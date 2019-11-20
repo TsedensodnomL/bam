@@ -17,13 +17,29 @@
                <div class="col-md-3 no-padding">
                  <label class="text-black" for="category">category</label>
                  <select name='category' class="form-control">
-                   <option>...</option>
+                 @foreach($category as $c)
+                  @if($c->id == $post->category_id)
+                   <option value='{{$c->id}}' selected>{{$c->name}}</option>
+                  @else
+                   <option value='{{$c->id}}'>{{$c->name}}</option>
+                  @endif
+                @endforeach
                  </select>
                </div>
                <div class="col-md-3 no-padding">
                  <label class="text-black" for="tag">tag</label>
-                 <select name='tag' class="form-control">
-                   <option>...</option>
+                 <select multiple name='tags[]' class="form-control">
+                   @foreach($tag as $t)
+                    @foreach($post->tags as $ta)
+                      @if ($t->id == $ta->id)
+                        <option value="{{$t->id}}" selected>{{$t->name}}</option>
+                        @break
+                      @else
+                        <option value="{{$t->id}}">{{$t->name}}</option>
+                        @break
+                      @endif
+                    @endforeach
+                   @endforeach
                  </select>
                </div>
               <div>
@@ -36,7 +52,7 @@
              <div class="row form-group">
                <div class="col-md-12">
                  <label class="text-black" for="slug">slug</label>
-                 <input type="text" id="slug" value='{{url($post->slug)}}' name='slug' class="form-control">
+                 <input type="text" id="slug" value='{{$post->slug}}' name='slug' class="form-control">
                </div>
              </div>
             

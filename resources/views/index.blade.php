@@ -3,7 +3,6 @@
 @section('title', 'Home')
 
 @section('content')
-
  
  <div class="site-section bg-light">
       <div class="container">
@@ -295,6 +294,6 @@
 
       </div>
     </div>
-
+@include('partials.subscribe')
 
 @endsection
