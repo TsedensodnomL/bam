@@ -14,7 +14,7 @@ class postController extends Controller
 
     public function __construct(){
 
-        $this->middleware('auth', ['except' => ['index','show']]);
+        $this->middleware('admin', ['except' => ['index','show']]);
     }
     /**
      * Display a listing of the resource.
@@ -83,10 +83,8 @@ class postController extends Controller
     public function show($id)
     {
         // $post = DB::table('posts')->where('id',$id)->orWhere('slug',$id)->first();
-        if(is_int($id))
-            $post = post::find($id)->first();
-         else    
-             $post = post::where('slug',$id)->first();
+          
+        $post = post::where('slug',$id)->first();
         // echo $post;
         return view('posts.post',['post'=>$post]);   
     }

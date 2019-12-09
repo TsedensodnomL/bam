@@ -12,7 +12,7 @@
             <h3>{{$category->name}}</h3>
             <p>{{$category->description}}</p>
           </div>
-          @if(Auth::check())
+          @if(Auth::check() && Auth::user()->role==1)
           <div class="col-md-3 d-flex align-items-center">
             <a href='{{route("category.edit",$category->id)}}' class='btn btn-success text-white'>Засах</a>
           </div>

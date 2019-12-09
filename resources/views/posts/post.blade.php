@@ -18,7 +18,7 @@
                 <span>&nbsp;-&nbsp; {{ $post->created_at}}</span>
               </div>
               <div class='mt-3'>
-              @if(Auth::check()){
+              @if(Auth::check() && Auth::user()->role==1  ){
                 <a href='{{route("post.edit",["post" => $post->id])}}' class='btn btn-primary'>Засах</a>
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <button data-id="{{$post->id}}" class='btn btn-danger deletePost'>Устгах</button> 
