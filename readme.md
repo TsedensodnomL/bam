@@ -4,4 +4,5 @@
 <li>Migration</li>
 <li>Model relations</li>
 <li>Simple authentication</li>
+<li>Multi authentication<li>
 <li>Reset password</li>
